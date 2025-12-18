@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="theme-color" content="#0d9488">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Long Tiên Bảo – Nhà Thuốc & Bấm Huyệt</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* RESET & VARIABLES */
+:root {
+    --primary-color: #0d9488;
+    --primary-dark: #0f766e;
+    --secondary-color: #14b8a6;
+    --accent-color: #f59e0b;
+    --danger-color: #ef4444;
+    --success-color: #10b981;
+    --text-dark: #1f2937;
+    --text-gray: #6b7280;
+    --bg-light: #f8fafc;
+    --bg-white: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --blur: blur(20px);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Ripple Effect */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::before {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+/* HEADER */
+.header {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border-bottom: 1px solid var(--glass-border);
+    color: white;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+    }
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 158, 11, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logo-icon-wrapper:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+}
+
+.logo-icon {
+    font-size: 2rem;
+    color: var(--accent-color);
+    filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.4));
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.logo-text h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: white;
+}
+
+.logo-text p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn-primary {
+    background: rgba(245, 158, 11, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 8px 16px rgba(245, 158, 11, 0.3);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px; /* Touch target size */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .btn-primary {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-primary span {
+        display: none;
+    }
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary:hover {
+    background: rgba(217, 119, 6, 0.95);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 24px rgba(245, 158, 11, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* MAIN CONTAINER */
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+}
+
+/* SEARCH & FILTER BAR */
+.search-bar {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    padding: 1.5rem;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-bar:hover {
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+    transform: translateY(-2px);
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-dark);
+    min-height: 44px; /* Touch target */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+@media (max-width: 768px) {
+    .search-box input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 0.875rem 1rem 0.875rem 2.75rem;
+    }
+}
+
+.search-box input::placeholder {
+    color: var(--text-gray);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: rgba(13, 148, 136, 0.5);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.2), 0 4px 12px rgba(13, 148, 136, 0.15);
+    transform: scale(1.02);
+}
+
+.search-box i {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-gray);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+}
+
+.search-box:has(input:focus) .search-icon,
+.search-box:hover .search-icon {
+    color: var(--primary-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.filter-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-dark);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: rgba(13, 148, 136, 0.5);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.2);
+    transform: scale(1.05);
+}
+
+.filter-select:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+.stats {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-left: auto;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.stats span {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+/* Responsive Grid */
+@media (min-width: 1400px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1399px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* CARD THUỐC */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    animation: cardAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.card:active {
+    transform: translateY(-5px) scale(0.98);
+}
+
+.card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(16, 185, 129, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.card-badge.out-of-stock {
+    background: var(--danger-color);
+}
+
+.card-img-wrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: var(--bg-light);
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .card-img-wrapper {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-img-wrapper {
+        height: 160px;
+    }
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(1) saturate(1);
+}
+
+.card:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.1) saturate(1.2);
+}
+
+.card-body {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-category {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    min-height: 2.6em;
+}
+
+.card-description {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.card-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.card-stock {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.card-stock.low {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.card-stock.out {
+    color: var(--danger-color);
+    font-weight: 600;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.btn-card {
+    flex: 1;
+    padding: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    min-height: 44px; /* Touch target */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .btn-card {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-card span {
+        font-size: 0.85rem;
+    }
+}
+
+.btn-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-card:active::before {
+    width: 200px;
+    height: 200px;
+}
+
+.btn-edit {
+    background: rgba(20, 184, 166, 0.8);
+    color: white;
+    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+}
+
+.btn-edit:hover {
+    background: rgba(13, 148, 136, 0.9);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4);
+}
+
+.btn-delete {
+    background: rgba(239, 68, 68, 0.8);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-delete:hover {
+    background: rgba(220, 38, 38, 0.9);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+/* ADD CARD */
+.add-card {
+    min-height: 400px;
+    border: 2px dashed rgba(13, 148, 136, 0.5);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: var(--primary-color);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    overflow: hidden;
+}
+
+.add-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s;
+}
+
+.add-card:hover::before {
+    animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.add-card:hover {
+    background: rgba(13, 148, 136, 0.2);
+    border-color: var(--secondary-color);
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 16px 48px 0 rgba(13, 148, 136, 0.4);
+}
+
+.add-card:active {
+    transform: scale(0.98);
+}
+
+.add-card i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 4px 8px rgba(13, 148, 136, 0.3));
+}
+
+.add-card:hover i {
+    transform: rotate(90deg) scale(1.2);
+}
+
+.add-card span {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 32px;
+    position: relative;
+    overflow-y: auto;
+    animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 20px 60px 0 rgba(31, 38, 135, 0.5);
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-width: 100%;
+        margin: 1rem auto;
+        padding: 1.5rem;
+        border-radius: 24px;
+        max-height: 95vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 100%;
+        margin: 0;
+        border-radius: 24px 24px 0 0;
+        max-height: 100vh;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-gray);
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 480px) {
+    .close-btn {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+}
+
+.close-btn i {
+    transition: transform 0.3s;
+}
+
+.close-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger-color);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.close-btn:hover i {
+    transform: scale(1.2);
+}
+
+.close-btn:active {
+    transform: rotate(90deg) scale(0.9);
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-dark);
+    min-height: 44px; /* Touch target */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+@media (max-width: 768px) {
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 0.875rem 1rem;
+    }
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: rgba(13, 148, 136, 0.5);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.2), 0 4px 12px rgba(13, 148, 136, 0.15);
+    transform: scale(1.02);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--text-gray);
+    font-size: 0.85rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.file-upload {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 2px dashed rgba(13, 148, 136, 0.5);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: var(--primary-color);
+    min-height: 44px; /* Touch target */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.file-upload-label:hover {
+    border-color: var(--primary-color);
+    background: rgba(13, 148, 136, 0.1);
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+}
+
+.file-preview {
+    margin-top: 0.5rem;
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    display: none;
+}
+
+.file-preview.show {
+    display: block;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-modal {
+    flex: 1;
+    padding: 0.875rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px; /* Touch target */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .btn-modal {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+}
+
+.btn-modal::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-modal:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-submit {
+    background: rgba(13, 148, 136, 0.9);
+    color: white;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+.btn-submit:hover {
+    background: rgba(15, 118, 110, 0.95);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(13, 148, 136, 0.4);
+}
+
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--text-dark);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* FOOTER */
+.footer {
+    background: rgba(15, 118, 110, 0.3);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border-top: 1px solid var(--glass-border);
+    color: white;
+    margin-top: 4rem;
+    box-shadow: 0 -8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 3rem 2rem;
+}
+
+.footer-col h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.footer-col h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.footer-col p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.footer-col a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-col a:hover {
+    color: var(--accent-color);
+}
+
+.footer-col i {
+    margin-right: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.social-links a:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+.social-links a:hover {
+    background: rgba(245, 158, 11, 0.8);
+    transform: translateY(-5px) scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 16px rgba(245, 158, 11, 0.4);
+}
+
+.footer-bottom {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* EMPTY STATE */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* RESPONSIVE - MOBILE FIRST APPROACH */
+
+/* Extra Small Devices (phones, 480px and down) */
+@media (max-width: 480px) {
+    .header {
+        padding: 0.75rem;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .logo-icon-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .logo-icon {
+        font-size: 1.5rem;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.25rem;
+    }
+    
+    .logo-text p {
+        font-size: 0.8rem;
+    }
+    
+    .container {
+        padding: 0 0.75rem;
+        margin: 0.75rem auto;
+    }
+    
+    .search-bar {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+    
+    .search-box {
+        min-width: 100%;
+    }
+    
+    .filter-group {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .filter-select {
+        width: 100%;
+    }
+    
+    .stats {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+        font-size: 0.85rem;
+    }
+    
+    .card {
+        border-radius: 20px;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .card-title {
+        font-size: 1rem;
+        min-height: auto;
+    }
+    
+    .card-price {
+        font-size: 1.1rem;
+    }
+    
+    .add-card {
+        min-height: 300px;
+        border-radius: 20px;
+    }
+    
+    .add-card i {
+        font-size: 2.5rem;
+    }
+    
+    .add-card span {
+        font-size: 1rem;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+    }
+    
+    .footer-col h3 {
+        font-size: 1.25rem;
+    }
+    
+    .footer-col h4 {
+        font-size: 1rem;
+    }
+    
+    .footer-col p {
+        font-size: 0.9rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Small Devices (phones, 481px to 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .logo-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .search-bar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .filter-group {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .stats {
+        margin-left: 0;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Medium Devices (tablets, 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .header-container {
+        flex-wrap: wrap;
+    }
+    
+    .search-bar {
+        flex-wrap: wrap;
+    }
+    
+    .filter-group {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .stats {
+        margin-left: auto;
+    }
+    
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large Devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+    .header-container {
+        flex-wrap: nowrap;
+    }
+    
+    .search-bar {
+        flex-wrap: nowrap;
+    }
+    
+    .footer-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Form responsive */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .logo-section {
+        flex-direction: row;
+    }
+    
+    .modal-content {
+        max-height: 90vh;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .search-bar,
+    .card-actions,
+    .add-card,
+    .footer,
+    .modal {
+        display: none;
+    }
+    
+    .card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
+
+/* LOADING ANIMATION */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Icon animations */
+i {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: inline-block;
+}
+
+button:hover i,
+a:hover i,
+.card:hover i {
+    transform: scale(1.15);
+}
+
+.btn-primary i,
+.btn-card i,
+.btn-modal i {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Enhanced card animations */
+.card {
+    will-change: transform;
+}
+
+/* Performance optimizations */
+.card,
+.search-bar,
+.modal-content {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Prevent text selection on buttons for better mobile UX */
+button,
+.btn-primary,
+.btn-card,
+.btn-modal,
+.add-card {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Smooth scrolling for iOS */
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fix for iOS input zoom */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"] {
+        font-size: 16px !important;
+    }
+}
+
+/* Safe area for notched devices */
+@supports (padding: max(0px)) {
+    .header,
+    .container,
+    .footer {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+    
+    .header {
+        padding-top: max(1.5rem, env(safe-area-inset-top));
+    }
+    
+    .footer {
+        padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    /* Keep current design but can be customized */
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo-section">
+            <div class="logo-icon-wrapper">
+                <i class="fas fa-pills logo-icon"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Long Tiên Bảo</h1>
+                <p>Nhà Thuốc & Bấm Huyệt Chuyên Nghiệp</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="btn-primary ripple" onclick="moForm()">
+                <i class="fas fa-plus-circle"></i>
+                <span>Thêm Thuốc</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+    <!-- SEARCH & FILTER BAR -->
+    <div class="search-bar">
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Tìm kiếm thuốc..." oninput="timKiem()">
+        </div>
+        <div class="filter-group">
+            <select class="filter-select" id="filterCategory" onchange="locThuoc()">
+                <option value="">Tất cả loại</option>
+                <option value="thuoc-tay">Thuốc Tây</option>
+                <option value="thuoc-dong-y">Thuốc Đông Y</option>
+                <option value="thuoc-bo">Thuốc Bổ</option>
+                <option value="thuoc-giam-dau">Thuốc Giảm Đau</option>
+                <option value="thuoc-khac">Khác</option>
+            </select>
+            <select class="filter-select" id="sortBy" onchange="sapXep()">
+                <option value="moi-nhat">Mới nhất</option>
+                <option value="ten-az">Tên A-Z</option>
+                <option value="ten-za">Tên Z-A</option>
+                <option value="gia-tang">Giá tăng dần</option>
+                <option value="gia-giam">Giá giảm dần</option>
+            </select>
+        </div>
+        <div class="stats">
+            <span id="totalCount">0</span> sản phẩm
+        </div>
+    </div>
+
+    <!-- GRID THUỐC -->
+<div class="grid" id="danhSach">
+        <div class="add-card ripple" onclick="moForm()">
+            <i class="fas fa-plus-circle"></i>
+            <span>Thêm thuốc mới</span>
+        </div>
+</div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+        <i class="fas fa-search"></i>
+        <h3>Không tìm thấy thuốc</h3>
+        <p>Hãy thử tìm kiếm với từ khóa khác hoặc thêm thuốc mới</p>
+    </div>
+</div>
+
+<!-- MODAL THÊM/CHỈNH SỬA THUỐC -->
+<div class="modal" id="modal" onclick="bamNgoai()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn ripple" onclick="dongForm()">
+            <i class="fas fa-times"></i>
+        </span>
+        <h2 id="modalTitle">Thêm thuốc mới</h2>
+        
+        <form id="medicineForm" onsubmit="return false;">
+            <div class="form-group">
+                <label for="hinh">Hình ảnh thuốc *</label>
+                <div class="file-upload">
+                    <input type="file" id="hinh" accept="image/*" onchange="previewImage(this)">
+                    <label for="hinh" class="file-upload-label">
+                        <i class="fas fa-upload"></i>
+                        <span>Chọn hình ảnh</span>
+                    </label>
+                    <img id="imagePreview" class="file-preview" alt="Preview">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ten">Tên thuốc *</label>
+                    <input type="text" id="ten" placeholder="Nhập tên thuốc" required>
+                </div>
+                <div class="form-group">
+                    <label for="loai">Phân loại *</label>
+                    <select id="loai" required>
+                        <option value="">Chọn loại</option>
+                        <option value="thuoc-tay">Thuốc Tây</option>
+                        <option value="thuoc-dong-y">Thuốc Đông Y</option>
+                        <option value="thuoc-bo">Thuốc Bổ</option>
+                        <option value="thuoc-giam-dau">Thuốc Giảm Đau</option>
+                        <option value="thuoc-khac">Khác</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="gia">Giá bán (VNĐ) *</label>
+                    <input type="number" id="gia" placeholder="0" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="soLuong">Số lượng *</label>
+                    <input type="number" id="soLuong" placeholder="0" min="0" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="moTa">Mô tả</label>
+                <textarea id="moTa" placeholder="Mô tả về thuốc, công dụng, cách sử dụng..."></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hanSuDung">Hạn sử dụng</label>
+                    <input type="date" id="hanSuDung">
+                </div>
+                <div class="form-group">
+                    <label for="nhaSanXuat">Nhà sản xuất</label>
+                    <input type="text" id="nhaSanXuat" placeholder="Tên nhà sản xuất">
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-modal btn-cancel ripple" onclick="dongForm()">
+                    <i class="fas fa-times"></i>
+                    <span>Hủy</span>
+                </button>
+                <button type="submit" class="btn-modal btn-submit ripple" onclick="luuThuoc()">
+                    <i class="fas fa-check"></i>
+                    <span id="submitText">Thêm thuốc</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3><i class="fas fa-pills"></i> Long Tiên Bảo</h3>
+            <p>Nhà thuốc uy tín chuyên cung cấp các loại thuốc chất lượng cao và dịch vụ bấm huyệt chuyên nghiệp. Chúng tôi cam kết mang đến sức khỏe tốt nhất cho khách hàng.</p>
+            <div class="social-links">
+                <a href="#" title="Zalo"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:longtienbao9@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="#" title="Điện thoại"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4><i class="fas fa-info-circle"></i> Thông tin liên hệ</h4>
+            <p><i class="fas fa-building"></i> <strong>Công ty:</strong> CÔNG TY TNHH LONG TIÊN BẢO</p>
+            <p><i class="fas fa-user-md"></i> <strong>Lương y:</strong> [Nhập tên lương y]</p>
+            <p><i class="fas fa-phone-alt"></i> <strong>Điện thoại:</strong> [Nhập số điện thoại]</p>
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> [Nhập địa chỉ]</p>
+            <p><i class="fas fa-clock"></i> <strong>Giờ làm việc:</strong> sáng 7:00 - 11:00, chiều 14:00 - 17:00 (Tất cả các ngày)</p>
+        </div>
+
+        <div class="footer-col">
+            <h4><i class="fas fa-concierge-bell"></i> Dịch vụ</h4>
+            <p><i class="fas fa-hand-holding-heart"></i> Bấm huyệt – xoa bóp chuyên nghiệp</p>
+            <p><i class="fas fa-heartbeat"></i> Chăm sóc sức khỏe toàn diện</p>
+            <p><i class="fas fa-pills"></i> Tư vấn thuốc</p>
+            <p><i class="fas fa-certificate"></i> Đảm bảo chất lượng thuốc</p>
+        </div>
+
+        <div class="footer-col">
+            <h4><i class="fas fa-link"></i> Liên kết nhanh</h4>
+            <p><a href="#"><i class="fas fa-chevron-right"></i> Về chúng tôi</a></p>
+            <p><a href="#"><i class="fas fa-chevron-right"></i> Chính sách bảo mật</a></p>
+            <p><a href="#"><i class="fas fa-chevron-right"></i> Điều khoản sử dụng</a></p>
+            <p><a href="#"><i class="fas fa-chevron-right"></i> Hướng dẫn mua hàng</a></p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Long Tiên Bảo. Tất cả quyền được bảo lưu. | Thiết kế bởi Nguyễn Thiên Bảo
+    </div>
+</footer>
+
+<script>
+// DATA MANAGEMENT
+let danhSachThuoc = [];
+let editingId = null;
+
+// LOAD DATA FROM LOCALSTORAGE
+function loadData() {
+    const saved = localStorage.getItem('danhSachThuoc');
+    if (saved) {
+        danhSachThuoc = JSON.parse(saved);
+        renderThuoc();
+    }
+}
+
+// SAVE DATA TO LOCALSTORAGE
+function saveData() {
+    localStorage.setItem('danhSachThuoc', JSON.stringify(danhSachThuoc));
+    renderThuoc();
+}
+
+// RENDER THUỐC
+function renderThuoc(filteredList = null) {
+    const grid = document.getElementById('danhSach');
+    const emptyState = document.getElementById('emptyState');
+    const list = filteredList || danhSachThuoc;
+    
+    // Clear grid except add card
+    const addCard = grid.querySelector('.add-card');
+    grid.innerHTML = '';
+    if (addCard) {
+        grid.appendChild(addCard);
+    } else {
+        const newAddCard = document.createElement('div');
+        newAddCard.className = 'add-card';
+        newAddCard.onclick = moForm;
+        newAddCard.innerHTML = '<i class="fas fa-plus-circle"></i><span>Thêm thuốc mới</span>';
+        grid.appendChild(newAddCard);
+    }
+
+    // Update count
+    document.getElementById('totalCount').textContent = list.length;
+
+    if (list.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+    }
+
+    emptyState.style.display = 'none';
+
+    // Render cards with stagger animation
+    list.forEach((thuoc, index) => {
+        const card = createCard(thuoc);
+        card.style.animationDelay = `${index * 0.1}s`;
+        grid.insertBefore(card, grid.lastElementChild);
+    });
+}
+
+// CREATE CARD
+function createCard(thuoc) {
+    const card = document.createElement('div');
+    card.className = 'card ripple';
+    card.dataset.id = thuoc.id;
+    
+    // Add ripple effect on click
+    card.addEventListener('click', function(e) {
+        if (e.target.closest('.btn-card')) return;
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.style.position = 'absolute';
+        ripple.style.borderRadius = '50%';
+        ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+        ripple.style.transform = 'scale(0)';
+        ripple.style.animation = 'ripple 0.6s ease-out';
+        ripple.style.pointerEvents = 'none';
+        
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+    });
+
+    const isOutOfStock = thuoc.soLuong === 0;
+    const isLowStock = thuoc.soLuong > 0 && thuoc.soLuong < 10;
+
+    let badge = '';
+    if (isOutOfStock) {
+        badge = '<div class="card-badge out-of-stock">Hết hàng</div>';
+    } else if (isLowStock) {
+        badge = '<div class="card-badge">Sắp hết</div>';
+    }
+
+    const categoryNames = {
+        'thuoc-tay': 'Thuốc Tây',
+        'thuoc-dong-y': 'Thuốc Đông Y',
+        'thuoc-bo': 'Thuốc Bổ',
+        'thuoc-giam-dau': 'Thuốc Giảm Đau',
+        'thuoc-khac': 'Khác'
+    };
+
+    card.innerHTML = `
+        ${badge}
+        <div class="card-img-wrapper">
+            <img src="${thuoc.hinh}" alt="${thuoc.ten}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22200%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2214%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKhông có hình%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="card-body">
+            <div class="card-category">${categoryNames[thuoc.loai] || thuoc.loai}</div>
+            <h3 class="card-title">${thuoc.ten}</h3>
+            ${thuoc.moTa ? `<p class="card-description">${thuoc.moTa}</p>` : ''}
+            <div class="card-info">
+                <div class="card-price">${formatPrice(thuoc.gia)}</div>
+                <div class="card-stock ${isOutOfStock ? 'out' : isLowStock ? 'low' : ''}">
+                    ${isOutOfStock ? 'Hết hàng' : `Còn ${thuoc.soLuong} sản phẩm`}
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-card btn-edit ripple" onclick="suaThuoc('${thuoc.id}')">
+                    <i class="fas fa-pencil-alt"></i>
+                    <span>Sửa</span>
+                </button>
+                <button class="btn-card btn-delete ripple" onclick="xoaThuoc('${thuoc.id}')">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Xóa</span>
+                </button>
+            </div>
+        </div>
+    `;
+
+    return card;
+}
+
+// FORMAT PRICE
+function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(price);
+}
+
+// MODAL FUNCTIONS
+function moForm(id = null) {
+    editingId = id;
+    const modal = document.getElementById('modal');
+    const form = document.getElementById('medicineForm');
+    const modalTitle = document.getElementById('modalTitle');
+    const submitText = document.getElementById('submitText');
+
+    if (id) {
+        const thuoc = danhSachThuoc.find(t => t.id === id);
+        if (thuoc) {
+            modalTitle.textContent = 'Chỉnh sửa thuốc';
+            submitText.textContent = 'Cập nhật';
+            document.getElementById('ten').value = thuoc.ten;
+            document.getElementById('loai').value = thuoc.loai;
+            document.getElementById('gia').value = thuoc.gia;
+            document.getElementById('soLuong').value = thuoc.soLuong;
+            document.getElementById('moTa').value = thuoc.moTa || '';
+            document.getElementById('hanSuDung').value = thuoc.hanSuDung || '';
+            document.getElementById('nhaSanXuat').value = thuoc.nhaSanXuat || '';
+            document.getElementById('imagePreview').src = thuoc.hinh;
+            document.getElementById('imagePreview').classList.add('show');
+        }
+    } else {
+        modalTitle.textContent = 'Thêm thuốc mới';
+        submitText.textContent = 'Thêm thuốc';
+        form.reset();
+        document.getElementById('imagePreview').classList.remove('show');
+    }
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function dongForm() {
+    document.getElementById('modal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    editingId = null;
+    document.getElementById('medicineForm').reset();
+    document.getElementById('imagePreview').classList.remove('show');
+}
+
+function bamNgoai() {
+    dongForm();
+}
+
+// PREVIEW IMAGE
+function previewImage(input) {
+    const preview = document.getElementById('imagePreview');
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.classList.add('show');
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// SAVE MEDICINE
+function luuThuoc() {
+    const ten = document.getElementById('ten').value.trim();
+    const loai = document.getElementById('loai').value;
+    const gia = parseInt(document.getElementById('gia').value);
+    const soLuong = parseInt(document.getElementById('soLuong').value);
+    const moTa = document.getElementById('moTa').value.trim();
+    const hanSuDung = document.getElementById('hanSuDung').value;
+    const nhaSanXuat = document.getElementById('nhaSanXuat').value.trim();
+    const hinhInput = document.getElementById('hinh');
+    const hinhFile = hinhInput.files[0];
+
+    if (!ten || !loai || !gia || soLuong === undefined) {
+        alert('Vui lòng nhập đầy đủ thông tin bắt buộc (*)');
+        return;
+    }
+
+    let hinh = '';
+    if (hinhFile) {
+        hinh = URL.createObjectURL(hinhFile);
+    } else if (editingId) {
+        const thuocCu = danhSachThuoc.find(t => t.id === editingId);
+        hinh = thuocCu ? thuocCu.hinh : '';
+    } else {
+        alert('Vui lòng chọn hình ảnh');
+        return;
+    }
+
+    const thuocData = {
+        id: editingId || Date.now().toString(),
+        ten,
+        loai,
+        gia,
+        soLuong,
+        moTa,
+        hanSuDung,
+        nhaSanXuat,
+        hinh,
+        ngayTao: editingId ? danhSachThuoc.find(t => t.id === editingId)?.ngayTao || new Date().toISOString() : new Date().toISOString(),
+        ngayCapNhat: new Date().toISOString()
+    };
+
+    if (editingId) {
+        const index = danhSachThuoc.findIndex(t => t.id === editingId);
+        if (index !== -1) {
+            danhSachThuoc[index] = thuocData;
+        }
+    } else {
+        danhSachThuoc.push(thuocData);
+    }
+
+    saveData();
+    dongForm();
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// EDIT MEDICINE
+function suaThuoc(id) {
+    moForm(id);
+}
+
+// DELETE MEDICINE
+function xoaThuoc(id) {
+    if (confirm('Bạn có chắc chắn muốn xóa thuốc này?')) {
+        danhSachThuoc = danhSachThuoc.filter(t => t.id !== id);
+        saveData();
+    }
+}
+
+// SEARCH
+function timKiem() {
+    const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+    locThuoc(keyword);
+}
+
+// FILTER
+function locThuoc(keyword = null) {
+    if (keyword === null) {
+        keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+    }
+    
+    const category = document.getElementById('filterCategory').value;
+    let filtered = danhSachThuoc;
+
+    // Filter by keyword
+    if (keyword) {
+        filtered = filtered.filter(thuoc => 
+            thuoc.ten.toLowerCase().includes(keyword) ||
+            (thuoc.moTa && thuoc.moTa.toLowerCase().includes(keyword)) ||
+            (thuoc.nhaSanXuat && thuoc.nhaSanXuat.toLowerCase().includes(keyword))
+        );
+    }
+
+    // Filter by category
+    if (category) {
+        filtered = filtered.filter(thuoc => thuoc.loai === category);
+    }
+
+    // Sort
+    sapXep(filtered);
+}
+
+// SORT
+function sapXep(list = null) {
+    const sortBy = document.getElementById('sortBy').value;
+    let listToSort = list || danhSachThuoc;
+
+    switch(sortBy) {
+        case 'ten-az':
+            listToSort.sort((a, b) => a.ten.localeCompare(b.ten));
+            break;
+        case 'ten-za':
+            listToSort.sort((a, b) => b.ten.localeCompare(a.ten));
+            break;
+        case 'gia-tang':
+            listToSort.sort((a, b) => a.gia - b.gia);
+            break;
+        case 'gia-giam':
+            listToSort.sort((a, b) => b.gia - a.gia);
+            break;
+        case 'moi-nhat':
+        default:
+            listToSort.sort((a, b) => new Date(b.ngayTao) - new Date(a.ngayTao));
+            break;
+    }
+
+    if (!list) {
+        timKiem();
+    } else {
+        renderThuoc(listToSort);
+    }
+}
+
+// KEYBOARD SHORTCUTS
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+    dongForm();
+}
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById('searchInput').focus();
+    }
+});
+
+// INITIALIZE
+loadData();
+</script>
+
+</body>
+</html>
