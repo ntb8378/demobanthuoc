@@ -1767,6 +1767,7 @@ button,
 // DATA MANAGEMENT
 let danhSachThuoc = [];
 let editingId = null;
+let currentImageBase64 = null; // Lưu base64 của hình ảnh đang preview
 
 // LOAD DATA FROM LOCALSTORAGE
 function loadData() {
@@ -1779,8 +1780,24 @@ function loadData() {
 
 // SAVE DATA TO LOCALSTORAGE
 function saveData() {
-    localStorage.setItem('danhSachThuoc', JSON.stringify(danhSachThuoc));
-    renderThuoc();
+    try {
+        const dataString = JSON.stringify(danhSachThuoc);
+        // Kiểm tra kích thước dữ liệu (localStorage thường giới hạn 5-10MB)
+        const sizeInMB = new Blob([dataString]).size / (1024 * 1024);
+        if (sizeInMB > 4) {
+            console.warn('Dữ liệu đang chiếm ' + sizeInMB.toFixed(2) + 'MB. Có thể gần đạt giới hạn localStorage.');
+        }
+        localStorage.setItem('danhSachThuoc', dataString);
+        renderThuoc();
+    } catch (e) {
+        if (e.name === 'QuotaExceededError') {
+            alert('Bộ nhớ đã đầy! Vui lòng xóa một số thuốc hoặc chọn hình ảnh nhỏ hơn.');
+            console.error('LocalStorage quota exceeded:', e);
+        } else {
+            alert('Lỗi khi lưu dữ liệu: ' + e.message);
+            console.error('Error saving data:', e);
+        }
+    }
 }
 
 // RENDER THUỐC
@@ -1926,14 +1943,27 @@ function moForm(id = null) {
             document.getElementById('moTa').value = thuoc.moTa || '';
             document.getElementById('hanSuDung').value = thuoc.hanSuDung || '';
             document.getElementById('nhaSanXuat').value = thuoc.nhaSanXuat || '';
-            document.getElementById('imagePreview').src = thuoc.hinh;
-            document.getElementById('imagePreview').classList.add('show');
+            // Hiển thị hình ảnh (có thể là base64 hoặc URL cũ)
+            if (thuoc.hinh) {
+                document.getElementById('imagePreview').src = thuoc.hinh;
+                document.getElementById('imagePreview').classList.add('show');
+                // Nếu là base64, lưu vào biến để có thể giữ nguyên khi không chọn hình mới
+                if (thuoc.hinh.startsWith('data:image')) {
+                    currentImageBase64 = thuoc.hinh;
+                } else {
+                    currentImageBase64 = null; // URL cũ, sẽ cần chọn hình mới
+                }
+            } else {
+                document.getElementById('imagePreview').classList.remove('show');
+                currentImageBase64 = null;
+            }
         }
     } else {
         modalTitle.textContent = 'Thêm thuốc mới';
         submitText.textContent = 'Thêm thuốc';
         form.reset();
         document.getElementById('imagePreview').classList.remove('show');
+        currentImageBase64 = null; // Reset khi thêm mới
     }
 
     modal.style.display = 'block';
@@ -1946,6 +1976,7 @@ function dongForm() {
     editingId = null;
     document.getElementById('medicineForm').reset();
     document.getElementById('imagePreview').classList.remove('show');
+    currentImageBase64 = null; // Reset biến hình ảnh
 }
 
 function bamNgoai() {
@@ -1956,12 +1987,39 @@ function bamNgoai() {
 function previewImage(input) {
     const preview = document.getElementById('imagePreview');
     if (input.files && input.files[0]) {
+        // Kiểm tra kích thước file (giới hạn 1.5MB để tránh localStorage quá lớn)
+        const maxSize = 1.5 * 1024 * 1024; // 1.5MB
+        if (input.files[0].size > maxSize) {
+            alert('Hình ảnh quá lớn! Vui lòng chọn hình nhỏ hơn 1.5MB để đảm bảo dữ liệu được lưu trữ tốt.');
+            input.value = '';
+            currentImageBase64 = null;
+            return;
+        }
+        
+        // Kiểm tra định dạng file
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+        if (!allowedTypes.includes(input.files[0].type)) {
+            alert('Vui lòng chọn file hình ảnh (JPG, PNG hoặc WEBP)');
+            input.value = '';
+            currentImageBase64 = null;
+            return;
+        }
+        
         const reader = new FileReader();
         reader.onload = function(e) {
-            preview.src = e.target.result;
+            // Lưu base64 vào biến để sử dụng khi lưu
+            currentImageBase64 = e.target.result;
+            preview.src = currentImageBase64;
             preview.classList.add('show');
         };
+        reader.onerror = function() {
+            alert('Lỗi khi đọc hình ảnh. Vui lòng thử lại.');
+            input.value = '';
+            currentImageBase64 = null;
+        };
         reader.readAsDataURL(input.files[0]);
+    } else {
+        currentImageBase64 = null;
     }
 }
 
@@ -1984,14 +2042,49 @@ function luuThuoc() {
 
     let hinh = '';
     if (hinhFile) {
-        hinh = URL.createObjectURL(hinhFile);
+        // Sử dụng base64 đã được convert trong previewImage
+        if (currentImageBase64) {
+            hinh = currentImageBase64;
+        } else {
+            // Nếu chưa có base64 (trường hợp hiếm), convert ngay tại đây
+            alert('Đang xử lý hình ảnh...');
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                hinh = e.target.result;
+                continueSaveMedicine(hinh);
+            };
+            reader.onerror = function() {
+                alert('Lỗi khi đọc hình ảnh. Vui lòng thử lại.');
+            };
+            reader.readAsDataURL(hinhFile);
+            return; // Dừng lại, sẽ tiếp tục trong callback
+        }
     } else if (editingId) {
+        // Khi chỉnh sửa, giữ nguyên hình cũ nếu không chọn hình mới
         const thuocCu = danhSachThuoc.find(t => t.id === editingId);
         hinh = thuocCu ? thuocCu.hinh : '';
+        if (!hinh) {
+            alert('Vui lòng chọn hình ảnh');
+            return;
+        }
     } else {
         alert('Vui lòng chọn hình ảnh');
         return;
     }
+    
+    // Tiếp tục lưu với base64
+    continueSaveMedicine(hinh);
+}
+
+// Hàm tiếp tục lưu dữ liệu thuốc sau khi có base64
+function continueSaveMedicine(hinh) {
+    const ten = document.getElementById('ten').value.trim();
+    const loai = document.getElementById('loai').value;
+    const gia = parseInt(document.getElementById('gia').value);
+    const soLuong = parseInt(document.getElementById('soLuong').value);
+    const moTa = document.getElementById('moTa').value.trim();
+    const hanSuDung = document.getElementById('hanSuDung').value;
+    const nhaSanXuat = document.getElementById('nhaSanXuat').value.trim();
 
     const thuocData = {
         id: editingId || Date.now().toString(),
